@@ -35,6 +35,7 @@ function App() {
       <CreateTodo
         handleSubmit={handleAddTodo}
         isTodoVisible={handleDisplayCreateTodo}
+        setShowCreateTodo={setShowCreateTodo}
       />
       {todos.map((todo) => {
         return <Todo todo={todo} key={todo.id} />;

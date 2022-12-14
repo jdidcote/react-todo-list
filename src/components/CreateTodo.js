@@ -10,6 +10,7 @@ export default function CreateTodo(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.setShowCreateTodo(false);
     props.handleSubmit({ title, description, dueDate });
   };
 
@@ -21,7 +22,7 @@ export default function CreateTodo(props) {
   return (
     <div
       className={
-        "container mx-auto border-4 max-w-sm flex flex-row rounded-md border-slate-400 text-center " +
+        "container mx-auto border-4 max-w-sm flex flex-row rounded-md border-slate-400 text-center absolute left-0 right-0 bg-white " +
         props.isTodoVisible()
       }
     >
