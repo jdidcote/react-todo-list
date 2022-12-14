@@ -10,8 +10,12 @@ export default function CreateTodo(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.handleSubmit({ title, description, dueDate, priority });
+  };
+
+  const handleClose = (e) => {
+    e.preventDefault();
     props.setShowCreateTodo(false);
-    props.handleSubmit({ title, description, dueDate });
   };
 
   const formLabel = "text-slate-500 md:w-1/3 flex-none";
@@ -72,10 +76,16 @@ export default function CreateTodo(props) {
           ></input>
         </div>
 
-        <div className="flex justify-center m-auto ml-40 w-max mt-0">
+        <div className="flex justify-center m-auto ml-28 w-max mt-0">
+          <button
+            onClick={handleClose}
+            className="hover:bg-red-200 rounded-lg bg-red-300 p-2 pt-1 pb-1 mt-0 mb-2 mx-2"
+          >
+            Close
+          </button>
           <button
             onClick={handleSubmit}
-            className="hover:bg-green-200 rounded-lg bg-emerald-300 p-2 pt-1 pb-1 mt-0 mb-2"
+            className="hover:bg-green-200 rounded-lg bg-emerald-300 p-2 pt-1 pb-1 mt-0 mb-2 mx-2"
           >
             Save
           </button>
