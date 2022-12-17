@@ -10,6 +10,12 @@ export default function CreateTodo(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!title) {
+      alert("Todo title cannot be empty");
+      return;
+    }
+
     props.handleSubmit({ title, description, dueDate, priority });
     props.setShowCreateTodo(false);
   };
@@ -40,6 +46,7 @@ export default function CreateTodo(props) {
               setTitle(e.target.value);
             }}
             value={title}
+            required
           ></input>
         </div>
 
