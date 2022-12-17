@@ -37,9 +37,11 @@ function App() {
         isTodoVisible={handleDisplayCreateTodo}
         setShowCreateTodo={setShowCreateTodo}
       />
-      {todos.map((todo) => {
-        return <Todo todo={todo} key={todo.id} />;
-      })}
+      <div className="grid grid-cols-4 gap-4">
+        {todos.map((todo) => {
+          return <Todo todo={todo} key={todo.id} />;
+        })}
+      </div>
     </div>
   );
 }
