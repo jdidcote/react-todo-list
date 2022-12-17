@@ -17,7 +17,6 @@ export default function CreateTodo(props) {
     }
 
     props.handleSubmit({ title, description, dueDate, priority });
-    props.setShowCreateTodo(false);
   };
 
   const handleClose = (e) => {

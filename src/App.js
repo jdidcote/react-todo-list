@@ -11,10 +11,25 @@ function App() {
     return showCreateTodo ? "block" : "hidden";
   };
 
+  const isNewTodoTitleUnique = (todo) => {
+    // Checks if the title for the new todo already exists
+    let isUnique = true;
+    todos.map((item) => {
+      if (todo.title === item.title) {
+        isUnique = false;
+      }
+    });
+    return isUnique;
+  };
+
   const handleAddTodo = (todo) => {
+    if (!isNewTodoTitleUnique(todo)) {
+      alert("Todo titles need to be unique");
+      return;
+    }
     todo.id = todos.length;
     setTodos(todos.concat(todo));
-    console.log(todos);
+    setShowCreateTodo(false);
   };
 
   return (
