@@ -16,7 +16,13 @@ export default function CreateTodo(props) {
       return;
     }
 
-    props.handleSubmit({ title, description, dueDate, priority });
+    props.handleSubmit({
+      title,
+      description,
+      dueDate,
+      priority,
+      isComplete: false,
+    });
   };
 
   const handleClose = (e) => {
