@@ -65,7 +65,7 @@ function App() {
         isTodoVisible={handleDisplayCreateTodo}
         setShowCreateTodo={setShowCreateTodo}
       />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="flex flex-col w-2/6 m-auto">
         {todos.map((todo) => {
           return (
             <Todo
