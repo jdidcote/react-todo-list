@@ -7,6 +7,19 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [showCreateTodo, setShowCreateTodo] = useState(false);
 
+  const updateTodoStatus = (todoId, completionStatus) => {
+    const idToModify = todos.filter((todo) => todo.id == todoId);
+
+    const newTodos = todos.map((todo) => {
+      if (todo.id === todoId) {
+        return { ...todo, isComplete: completionStatus };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodos);
+  };
+
   const handleDisplayCreateTodo = () => {
     return showCreateTodo ? "block" : "hidden";
   };
@@ -54,7 +67,13 @@ function App() {
       />
       <div className="grid grid-cols-4 gap-4">
         {todos.map((todo) => {
-          return <Todo todo={todo} key={todo.id} />;
+          return (
+            <Todo
+              todo={todo}
+              key={todo.id}
+              updateTodoStatus={updateTodoStatus}
+            />
+          );
         })}
       </div>
     </div>
