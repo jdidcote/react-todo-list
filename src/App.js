@@ -46,7 +46,7 @@ function App() {
   };
 
   return (
-    <div className="font-poppins">
+    <div className="font-poppins container md border m-auto">
       <header className="container mx-auto p-6">
         <h1 className="flex items-center justify-center text-4xl font-medium">
           To-do App
