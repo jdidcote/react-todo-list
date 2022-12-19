@@ -13,11 +13,11 @@ export default function Todo(props) {
         <p className="mr-4 font-bold text-slate-500">Due</p>
         <p>{format(props.todo.dueDate, "dd/mm/yyyy")}</p>
       </div>
-      <div className="flex flex-row justify-start text-slate-500">
-        <p className="mr-4 font-bold">Priority</p>
-        {props.todo.priority}
-      </div>
-      <div>
+      <div className="flex flex-row justify-between text-slate-500">
+        <div className="flex flex-row">
+          <p className="mr-4 font-bold">Priority</p>
+          {props.todo.priority}
+        </div>
         <label className="inline-flex relative items-center mr-5 cursor-pointer">
           <input
             type="checkbox"
