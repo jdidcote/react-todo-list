@@ -49,7 +49,7 @@ export default function Todo() {
     <div className="font-poppins container md m-auto">
       <header className="container mx-auto p-6">
         <h1 className="flex items-center justify-center text-4xl font-medium">
-          To-do App
+          To-dos
         </h1>
         <div className="flex items-center justify-center">
           <button

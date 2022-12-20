@@ -1,10 +1,10 @@
 import { useState } from "react";
 import CreateTodo from "./components/todos/CreateTodo";
-import Todo from "./components/todos/Todo";
+import AppTabs from "./components/AppTabs";
 import "./index.css";
 
 function App() {
-  return <Todo></Todo>;
+  return <AppTabs></AppTabs>;
 }
 
 export default App;
