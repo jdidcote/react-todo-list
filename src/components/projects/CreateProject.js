@@ -53,7 +53,7 @@ export default function CreateProject(props) {
             Close
           </button>
           <button
-            onClick={(e) => props.handleSubmit(e)}
+            onClick={() => props.handleSubmit(title)}
             className="hover:bg-green-200 rounded-lg bg-emerald-300 p-2 pt-1 pb-1 mt-0 mb-2 mx-2"
           >
             Save

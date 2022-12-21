@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import CreateProject from "./CreateProject";
+import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -11,7 +12,8 @@ export default function Projects() {
     return showCreateProject ? "block" : "hidden";
   };
 
-  const handleAddProject = (project) => {
+  const handleAddProject = (title) => {
+    const project = { title };
     project.id = projects.length;
     setProjects(projects.concat(project));
     setShowCreateProject(false);
@@ -37,6 +39,11 @@ export default function Projects() {
         setShowCreateProject={setShowCreateProject}
         handleSubmit={handleAddProject}
       ></CreateProject>
+      <div className="flex flex-col w-2/6 m-auto">
+        {projects.map((project) => (
+          <ProjectCard project={project}></ProjectCard>
+        ))}
+      </div>
     </div>
   );
 }
