@@ -13,10 +13,26 @@ export default function Projects() {
   };
 
   const handleAddProject = (title) => {
+    if (!isNewProjectTitleUnique(title)) {
+      alert("Project titles need to be unique");
+      return;
+    }
+
     const project = { title };
     project.id = projects.length;
     setProjects(projects.concat(project));
     setShowCreateProject(false);
+  };
+
+  const isNewProjectTitleUnique = (title) => {
+    // Checks if the title for the new project already exists
+    let isUnique = true;
+    projects.map((item) => {
+      if (title === item.title) {
+        isUnique = false;
+      }
+    });
+    return isUnique;
   };
 
   return (
@@ -41,7 +57,7 @@ export default function Projects() {
       ></CreateProject>
       <div className="flex flex-col w-2/6 m-auto">
         {projects.map((project) => (
-          <ProjectCard project={project}></ProjectCard>
+          <ProjectCard project={project} key={project.id}></ProjectCard>
         ))}
       </div>
     </div>
