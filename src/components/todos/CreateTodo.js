@@ -89,6 +89,17 @@ export default function CreateTodo(props) {
           ></input>
         </div>
 
+        <div className={formSection}>
+          <label htmlFor="projectSelector" className={formLabel}>
+            Project
+          </label>
+          <select name="projectSelector" id="projectSelector">
+            {props.projects.map((e) => (
+              <option value={e}>{e["title"]}</option>
+            ))}
+          </select>
+        </div>
+
         <div className="flex justify-center m-auto ml-28 w-max mt-0">
           <button
             onClick={handleClose}

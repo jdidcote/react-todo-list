@@ -52,10 +52,14 @@ export default function AppTabs() {
       </div>
       <div>
         <div style={{ display: selectedTab === "projects" ? "block" : "none" }}>
-          <Projects projects={projects} setProjects={setProjects}></Projects>
+          <Projects
+            projects={projects}
+            todos={todos}
+            setProjects={setProjects}
+          ></Projects>
         </div>
         <div style={{ display: selectedTab === "todos" ? "block" : "none" }}>
-          <Todo todos={todos} setTodos={setTodos}></Todo>
+          <Todo todos={todos} projects={projects} setTodos={setTodos}></Todo>
         </div>
       </div>
     </div>

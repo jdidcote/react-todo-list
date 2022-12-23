@@ -63,6 +63,7 @@ export default function Todo(props) {
         handleSubmit={handleAddTodo}
         isTodoVisible={handleDisplayCreateTodo}
         setShowCreateTodo={setShowCreateTodo}
+        projects={props.projects}
       />
       <div className="flex flex-col w-2/6 m-auto">
         {props.todos.map((todo) => {
