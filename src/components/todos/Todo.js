@@ -3,21 +3,20 @@ import React, { useState } from "react";
 import CreateTodo from "./CreateTodo";
 import TodoCard from "./TodoCard";
 
-export default function Todo() {
-  const [todos, setTodos] = useState([]);
+export default function Todo(props) {
   const [showCreateTodo, setShowCreateTodo] = useState(false);
 
   const updateTodoStatus = (todoId, completionStatus) => {
-    const idToModify = todos.filter((todo) => todo.id == todoId);
+    const idToModify = props.todos.filter((todo) => todo.id == todoId);
 
-    const newTodos = todos.map((todo) => {
+    const newTodos = props.todos.map((todo) => {
       if (todo.id === todoId) {
         return { ...todo, isComplete: completionStatus };
       } else {
         return todo;
       }
     });
-    setTodos(newTodos);
+    props.setTodos(newTodos);
   };
 
   const handleDisplayCreateTodo = () => {
@@ -27,7 +26,7 @@ export default function Todo() {
   const isNewTodoTitleUnique = (todo) => {
     // Checks if the title for the new todo already exists
     let isUnique = true;
-    todos.map((item) => {
+    props.todos.map((item) => {
       if (todo.title === item.title) {
         isUnique = false;
       }
@@ -40,8 +39,8 @@ export default function Todo() {
       alert("Todo titles need to be unique");
       return;
     }
-    todo.id = todos.length;
-    setTodos(todos.concat(todo));
+    todo.id = props.todos.length;
+    props.setTodos(props.todos.concat(todo));
     setShowCreateTodo(false);
   };
 
@@ -66,7 +65,7 @@ export default function Todo() {
         setShowCreateTodo={setShowCreateTodo}
       />
       <div className="flex flex-col w-2/6 m-auto">
-        {todos.map((todo) => {
+        {props.todos.map((todo) => {
           return (
             <TodoCard
               todo={todo}

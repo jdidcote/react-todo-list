@@ -5,6 +5,9 @@ import Todo from "./todos/Todo";
 export default function AppTabs() {
   const [selectedTab, setSelectedTab] = useState("projects");
 
+  const [projects, setProjects] = useState([]);
+  const [todos, setTodos] = useState([]);
+
   const activeTabLinkStyle =
     "inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500";
   const inactiveTabLinkStyle =
@@ -49,10 +52,10 @@ export default function AppTabs() {
       </div>
       <div>
         <div style={{ display: selectedTab === "projects" ? "block" : "none" }}>
-          <Projects></Projects>
+          <Projects projects={projects} setProjects={setProjects}></Projects>
         </div>
         <div style={{ display: selectedTab === "todos" ? "block" : "none" }}>
-          <Todo></Todo>
+          <Todo todos={todos} setTodos={setTodos}></Todo>
         </div>
       </div>
     </div>

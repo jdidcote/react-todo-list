@@ -4,8 +4,7 @@ import { useState } from "react";
 import CreateProject from "./CreateProject";
 import ProjectCard from "./ProjectCard";
 
-export default function Projects() {
-  const [projects, setProjects] = useState([]);
+export default function Projects(props) {
   const [showCreateProject, setShowCreateProject] = useState(false);
 
   const handleDisplayCreateProject = () => {
@@ -19,15 +18,15 @@ export default function Projects() {
     }
 
     const project = { title };
-    project.id = projects.length;
-    setProjects(projects.concat(project));
+    project.id = props.projects.length;
+    props.setProjects(props.projects.concat(project));
     setShowCreateProject(false);
   };
 
   const isNewProjectTitleUnique = (title) => {
     // Checks if the title for the new project already exists
     let isUnique = true;
-    projects.map((item) => {
+    props.projects.map((item) => {
       if (title === item.title) {
         isUnique = false;
       }
@@ -56,7 +55,7 @@ export default function Projects() {
         handleSubmit={handleAddProject}
       ></CreateProject>
       <div className="flex flex-col w-2/6 m-auto">
-        {projects.map((project) => (
+        {props.projects.map((project) => (
           <ProjectCard project={project} key={project.id}></ProjectCard>
         ))}
       </div>
