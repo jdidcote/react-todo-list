@@ -53,7 +53,13 @@ export default function Todo(props) {
         <div className="flex items-center justify-center">
           <button
             className="hover:bg-blue-200 rounded-lg bg-blue-300 p-2 pt-1 pb-1 mt-4 ml-2 mr-2"
-            onClick={() => setShowCreateTodo(true)}
+            onClick={() => {
+              if (props.projects.length == 0) {
+                alert("Create a project before adding to-dos");
+                return;
+              }
+              setShowCreateTodo(true);
+            }}
           >
             Add item
           </button>

@@ -7,6 +7,7 @@ export default function CreateTodo(props) {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
   const [priority, setPriority] = useState("");
+  const [projectID, setProjectID] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function CreateTodo(props) {
       dueDate,
       priority,
       isComplete: false,
+      projectID,
     });
   };
 
@@ -93,9 +95,15 @@ export default function CreateTodo(props) {
           <label htmlFor="projectSelector" className={formLabel}>
             Project
           </label>
-          <select name="projectSelector" id="projectSelector">
+          <select
+            name="projectSelector"
+            id="projectSelector"
+            onChange={(e) => setProjectID(e.target.value)}
+          >
             {props.projects.map((e) => (
-              <option value={e}>{e["title"]}</option>
+              <option key={e.id} value={e.id}>
+                {e["title"]}
+              </option>
             ))}
           </select>
         </div>
