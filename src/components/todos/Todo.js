@@ -44,8 +44,19 @@ export default function Todo(props) {
     setShowCreateTodo(false);
   };
 
+  const getAssociatedTodos = (projectID = null) => {
+    if (projectID === null) {
+      return props.todos;
+    }
+    // Gets a list of todos associated with a certain project
+    return props.todos.filter((todo) => todo.projectID == projectID);
+  };
+
   return (
-    <div className="font-poppins container md m-auto">
+    <div
+      className="font-poppins container md m-auto"
+      onChange={() => console.log(getAssociatedTodos(props.selectedProject))}
+    >
       <header className="container mx-auto p-6">
         <h1 className="flex items-center justify-center text-4xl font-medium">
           To-dos
@@ -72,7 +83,7 @@ export default function Todo(props) {
         projects={props.projects}
       />
       <div className="flex flex-col w-2/6 m-auto">
-        {props.todos.map((todo) => {
+        {getAssociatedTodos(props.selectedProject).map((todo) => {
           return (
             <TodoCard
               todo={todo}

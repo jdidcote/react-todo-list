@@ -5,6 +5,8 @@ import Todo from "./todos/Todo";
 export default function AppTabs() {
   const [selectedTab, setSelectedTab] = useState("projects");
 
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const [projects, setProjects] = useState([]);
   const [todos, setTodos] = useState([]);
 
@@ -15,7 +17,7 @@ export default function AppTabs() {
   const tabTitleStyle = "mr-2 list-none";
 
   return (
-    <div onChange={() => console.log(todos)}>
+    <div>
       <div className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
         <li className={tabTitleStyle}>
           <a
@@ -55,11 +57,18 @@ export default function AppTabs() {
           <Projects
             projects={projects}
             todos={todos}
+            setSelectedProject={setSelectedProject}
             setProjects={setProjects}
+            setSelectedTab={setSelectedTab}
           ></Projects>
         </div>
         <div style={{ display: selectedTab === "todos" ? "block" : "none" }}>
-          <Todo todos={todos} projects={projects} setTodos={setTodos}></Todo>
+          <Todo
+            todos={todos}
+            projects={projects}
+            setTodos={setTodos}
+            selectedProject={selectedProject}
+          ></Todo>
         </div>
       </div>
     </div>

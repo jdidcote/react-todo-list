@@ -56,7 +56,12 @@ export default function Projects(props) {
       ></CreateProject>
       <div className="flex flex-col w-2/6 m-auto">
         {props.projects.map((project) => (
-          <ProjectCard project={project} key={project.id}></ProjectCard>
+          <ProjectCard
+            project={project}
+            setSelectedTab={props.setSelectedTab}
+            key={project.id}
+            setSelectedProject={props.setSelectedProject}
+          ></ProjectCard>
         ))}
       </div>
     </div>
