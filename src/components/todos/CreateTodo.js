@@ -7,6 +7,7 @@ export default function CreateTodo(props) {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
   const [priority, setPriority] = useState("");
+  const [projectID, setProjectID] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function CreateTodo(props) {
       dueDate,
       priority,
       isComplete: false,
+      projectID,
     });
   };
 
@@ -87,6 +89,23 @@ export default function CreateTodo(props) {
             value={priority}
             type="number"
           ></input>
+        </div>
+
+        <div className={formSection}>
+          <label htmlFor="projectSelector" className={formLabel}>
+            Project
+          </label>
+          <select
+            name="projectSelector"
+            id="projectSelector"
+            onChange={(e) => setProjectID(e.target.value)}
+          >
+            {props.projects.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e["title"]}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex justify-center m-auto ml-28 w-max mt-0">

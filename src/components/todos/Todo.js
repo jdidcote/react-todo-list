@@ -3,21 +3,20 @@ import React, { useState } from "react";
 import CreateTodo from "./CreateTodo";
 import TodoCard from "./TodoCard";
 
-export default function Todo() {
-  const [todos, setTodos] = useState([]);
+export default function Todo(props) {
   const [showCreateTodo, setShowCreateTodo] = useState(false);
 
   const updateTodoStatus = (todoId, completionStatus) => {
-    const idToModify = todos.filter((todo) => todo.id == todoId);
+    const idToModify = props.todos.filter((todo) => todo.id == todoId);
 
-    const newTodos = todos.map((todo) => {
+    const newTodos = props.todos.map((todo) => {
       if (todo.id === todoId) {
         return { ...todo, isComplete: completionStatus };
       } else {
         return todo;
       }
     });
-    setTodos(newTodos);
+    props.setTodos(newTodos);
   };
 
   const handleDisplayCreateTodo = () => {
@@ -27,7 +26,7 @@ export default function Todo() {
   const isNewTodoTitleUnique = (todo) => {
     // Checks if the title for the new todo already exists
     let isUnique = true;
-    todos.map((item) => {
+    props.todos.map((item) => {
       if (todo.title === item.title) {
         isUnique = false;
       }
@@ -40,13 +39,24 @@ export default function Todo() {
       alert("Todo titles need to be unique");
       return;
     }
-    todo.id = todos.length;
-    setTodos(todos.concat(todo));
+    todo.id = props.todos.length;
+    props.setTodos(props.todos.concat(todo));
     setShowCreateTodo(false);
   };
 
+  const getAssociatedTodos = (projectID = null) => {
+    if (projectID === null) {
+      return props.todos;
+    }
+    // Gets a list of todos associated with a certain project
+    return props.todos.filter((todo) => todo.projectID == projectID);
+  };
+
   return (
-    <div className="font-poppins container md m-auto">
+    <div
+      className="font-poppins container md m-auto"
+      onChange={() => console.log(getAssociatedTodos(props.selectedProject))}
+    >
       <header className="container mx-auto p-6">
         <h1 className="flex items-center justify-center text-4xl font-medium">
           To-dos
@@ -54,7 +64,13 @@ export default function Todo() {
         <div className="flex items-center justify-center">
           <button
             className="hover:bg-blue-200 rounded-lg bg-blue-300 p-2 pt-1 pb-1 mt-4 ml-2 mr-2"
-            onClick={() => setShowCreateTodo(true)}
+            onClick={() => {
+              if (props.projects.length == 0) {
+                alert("Create a project before adding to-dos");
+                return;
+              }
+              setShowCreateTodo(true);
+            }}
           >
             Add item
           </button>
@@ -64,9 +80,10 @@ export default function Todo() {
         handleSubmit={handleAddTodo}
         isTodoVisible={handleDisplayCreateTodo}
         setShowCreateTodo={setShowCreateTodo}
+        projects={props.projects}
       />
       <div className="flex flex-col w-2/6 m-auto">
-        {todos.map((todo) => {
+        {getAssociatedTodos(props.selectedProject).map((todo) => {
           return (
             <TodoCard
               todo={todo}
